@@ -11,12 +11,14 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Contact Email</th>
         </tr>
     </thead>
     <tr th:each="event : ${events}">
         <th th:text="${event.id}"></th>
         <td th:text="${event.name}"></td>
         <td th:text="${event.description}"></td>
+        <td th:text="${event.contactEmail}"></td>
     </tr>
 </table>
 
