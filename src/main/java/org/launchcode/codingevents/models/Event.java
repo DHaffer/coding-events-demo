@@ -1,9 +1,7 @@
 package org.launchcode.codingevents.models;
 
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 public class Event {
@@ -22,14 +20,26 @@ public class Event {
     @Email(message="Invalid email. Try again.")
     private String contactEmail;
 
+    @NotBlank( message = "Location cannot be left blank.")
+    private String location;
+
+    @AssertTrue( message = "Registration must be required at this time.")
+    private boolean registrationRequired;
+
+    @Min(1)
+    private int numberOfAttendees;
+
     public EventType type;
 
-    public Event(String name, String description, String contactEmail, EventType type) {
+    public Event(String name, String description, String contactEmail, EventType type, String location, boolean registrationRequired, int numberOfAttendees) {
         this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
         this.type = type;
+        this.location = location;
+        this.registrationRequired = registrationRequired;
+        this.numberOfAttendees = numberOfAttendees;
     }
     public Event() {
         this.id = nextId;
@@ -71,6 +81,30 @@ public class Event {
 
     public int getId() {
         return id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public boolean isRegistrationRequired() {
+        return registrationRequired;
+    }
+
+    public void setRegistrationRequired(boolean registrationRequired) {
+        this.registrationRequired = registrationRequired;
+    }
+
+    public int getNumberOfAttendees() {
+        return numberOfAttendees;
+    }
+
+    public void setNumberOfAttendees(int numberOfAttendees) {
+        this.numberOfAttendees = numberOfAttendees;
     }
 
     @Override
